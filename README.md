@@ -86,14 +86,6 @@ microk8s dashboard-proxy --address='0.0.0.0'   # Bind to all interfaces
 
 ---
 
-#### 📋 Other Useful Commands
-
-```bash
-microk8s kubectl get svc whoami-service     # View custom service details
-microk8s kubectl get pods -o wide           # Detailed pod info across nodes
-```
-
----
 
 #### 📌 Next Steps
 
