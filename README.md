@@ -93,3 +93,18 @@ microk8s dashboard-proxy --address='0.0.0.0'   # Bind to all interfaces
 * 🌐 Use Ingress + TLS for domains
 * 📈 Monitor with Prometheus + Grafana
 * ⚙️ Auto-deploy with CI/CD (GitHub Actions, ArgoCD)
+
+  ### yaml file
+
+  apiVersion: v1
+kind: Service
+metadata:
+  name: your-app-service
+spec:
+  selector:
+    app: your-app  # Must match the Deployment's pod labels
+  ports:
+    - protocol: TCP
+      port: 80  # External port
+      targetPort: 8080  # Matches containerPort in Deployment
+  type: ClusterIP  # Options: ClusterIP (internal), LoadBalancer (external)
