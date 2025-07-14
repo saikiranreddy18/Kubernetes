@@ -94,9 +94,12 @@ microk8s dashboard-proxy --address='0.0.0.0'   # Bind to all interfaces
 * 📈 Monitor with Prometheus + Grafana
 * ⚙️ Auto-deploy with CI/CD (GitHub Actions, ArgoCD)
 
-  ### yaml file
+ ## Kubernetes Service Configuration (`service.yaml`)
 
-  apiVersion: v1
+Exposes your application internally (or externally) in the cluster.
+
+```yaml
+apiVersion: v1
 kind: Service
 metadata:
   name: your-app-service
@@ -105,6 +108,6 @@ spec:
     app: your-app  # Must match the Deployment's pod labels
   ports:
     - protocol: TCP
-      port: 80  # External port
-      targetPort: 8080  # Matches containerPort in Deployment
-  type: ClusterIP  # Options: ClusterIP (internal), LoadBalancer (external)
+      port: 80       # External port (accessed by other services)
+      targetPort: 8080  # Matches your app's container port
+  type: ClusterIP    # Options: ClusterIP (internal), LoadBalancer (external)
